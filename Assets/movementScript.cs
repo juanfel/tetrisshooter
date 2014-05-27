@@ -3,10 +3,17 @@ using System.Collections;
 
 public class movementScript : MonoBehaviour {
 	Vector3 movementVector;
+	Vector3 currentPos;
+	Vector3 nextPos;
+	Vector3 min;
+	Vector3 max;
+	Vector3 minCorner = new Vector3(0,0,1);
+	Vector3 maxCorner = new Vector3 (1, 1, 1);
 	float speed = 0.4f;
 	// Use this for initialization
 	void Start () {
 		movementVector = new Vector3 ();
+		nextPos = new Vector3 ();
 		movementVector.z = 0;
 	}
 	
@@ -17,11 +24,20 @@ public class movementScript : MonoBehaviour {
 
 		movementVector.y = Input.GetAxis ("Vertical");
 		movementVector.x = Input.GetAxis ("Horizontal");
-		Vector3 currentPos = transform.position;
-		transform.position = movementVector * speed + currentPos;
+		currentPos = transform.position;
+		moveToNextPos ();
+
 		movementVector = new Vector3 (0, 0, 0);
 	}
-	void FixedUpdate(){
 
-		}
+	void moveToNextPos()
+	{
+		min = Camera.main.ViewportToWorldPoint (minCorner);
+		max = Camera.main.ViewportToWorldPoint (maxCorner);
+		nextPos = movementVector * speed + currentPos;
+		nextPos.x = Mathf.Clamp (nextPos.x, min.x, max.x);
+		nextPos.y = Mathf.Clamp (nextPos.y, min.y, max.y);
+		transform.position = nextPos;
+
+	}
 }
