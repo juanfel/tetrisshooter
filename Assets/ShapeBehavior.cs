@@ -5,7 +5,7 @@ using System.Collections;
 public class ShapeBehavior : MonoBehaviour {
 	public string bloqueName; //Nombre del bloque a instanciar
 	public GameObject bloque;	//Aqui va el tipo de bloque que queremos usar para el shape 
-	public bool[][] figure;   //Aqui va la figura, que es instanciada en otra parte
+	public FigureTemplate figure;   //Aqui va la figura, que es instanciada en otra parte
 								//1-> hay bloque en esa posicion. 0-> no hay bloque
 	public int ancho;
 	public int alto;
@@ -20,9 +20,9 @@ public class ShapeBehavior : MonoBehaviour {
 		float x = x0;
 		float y = y0;
 		bloque = (GameObject)Resources.Load (bloqueName);
-		/*for (int i = 0; i < alto; i++) {
-			for (int j = 0; j < ancho; j++) {
-				if(figure[i][j] == true)
+		for (int i = 0; i < figure.size_y; i++) {
+			for (int j = 0; j < figure.size_y; j++) {
+				if(figure.figure[i,j] == true)
 				{
 					Instantiate(bloque,new Vector3(x,y,0),Quaternion.identity);
 				}
@@ -32,21 +32,8 @@ public class ShapeBehavior : MonoBehaviour {
 			y = y0;
 
 			x += 1;
-		}*/
-		foreach (bool[] i in figure) {
-			foreach(bool j in i)
-			{
-				if(j == true)
-				{
-					Instantiate(bloque,new Vector3(x,y,0),Quaternion.identity);
-				}
-				//y -= bloque.collider2D.bounds.size.y;
-				y -=1;
-			}
-			y = y0;
-			//x += bloque.collider2D.bounds.size.x;
-			x += 1;
 		}
+
 
 	}
 

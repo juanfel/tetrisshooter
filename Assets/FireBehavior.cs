@@ -27,16 +27,16 @@ public class FireBehavior : MonoBehaviour {
 	}
 
 	//Crea una figura para propositos de testing y la asigna al shapebehavior
-	bool[][] createDebugFigure(int alto, int ancho)
+	bool[,] createDebugFigure(int alto, int ancho)
 	{
-		bool[][] figure = new bool[alto][];
-		for (int i = 0; i<alto; i++)
-		{
-			figure[i] = new bool[ancho];
-		}
-		figure[0]=new bool[]{true,true,false,true};
-		figure[1]=new bool[]{true,true,true,true};
-		return figure;
+
+		figure = new bool[,]{
+			{true,true,false,true},
+			{true,true,true,true}
+		};
+		FigureTemplate figtemp = new FigureTemplate(figure,4,2);
+		return figtemp;
 
 	}
+	
 }
