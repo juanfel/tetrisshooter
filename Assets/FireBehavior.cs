@@ -24,6 +24,10 @@ public class FireBehavior : MonoBehaviour {
 			shapebehavior.y0 = transform.position.y;
 			shapebehavior.StartShape();
 		}
+		if (Input.GetButtonDown ("Fire2") == true) 
+		{
+			shapebehavior.figure.rotate();
+		}
 	}
 
 	//Crea una figura para propositos de testing y la asigna al shapebehavior
