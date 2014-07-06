@@ -20,7 +20,7 @@ public class ShapeBehavior : MonoBehaviour {
 		float x = x0;
 		float y = y0;
 		bloque = (GameObject)Resources.Load (bloqueName);
-		for (int i = 0; i < figure.size_y; i++) {
+		for (int i = 0; i < figure.size_x; i++) {
 			for (int j = 0; j < figure.size_y; j++) {
 				if(figure.figure[i,j] == true)
 				{
