@@ -32,7 +32,7 @@ public class EnemySpawnBehavior : MonoBehaviour {
 		{
 			shapebehavior.x0 = Mathf.Round (transform.position.x*invsnap)/invsnap;
 			shapebehavior.y0 = Mathf.Round (transform.position.y*invsnap)/invsnap;
-			shapebehavior.StartShape();
+			shapebehavior.InstantiateShape();
 			spawnReady = false;
 		}
 	}

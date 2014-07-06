@@ -12,11 +12,11 @@ public class ShapeBehavior : MonoBehaviour {
 
 	public float x0;
 	public float y0;
-
+	
 	// Reemplaza los valores donde deben ir los bloques por los bloques mismos
 	// Ademas los instancia en el mundo. Parte desde el extremo (0,0). O sea, va rellenando
 	// al reve
-	public void StartShape () {
+	public void InstantiateShape () {
 		float x = x0;
 		float y = y0;
 		bloque = (GameObject)Resources.Load (bloqueName);
