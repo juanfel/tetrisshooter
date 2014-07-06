@@ -27,13 +27,11 @@ public class ShapeBehavior : MonoBehaviour {
 					Instantiate(bloque,new Vector3(x,y,0),Quaternion.identity);
 				}
 
-				//y -= bloque.collider2D.bounds.size.y;
-				y -= 1;
+				y -= bloque.renderer.bounds.size.y;
 			}
 			y = y0;
 
-			//x += bloque.collider2D.bounds.size.x;
-			x += 1;
+			x += bloque.renderer.bounds.size.x;
 		}
 		x = x0;
 

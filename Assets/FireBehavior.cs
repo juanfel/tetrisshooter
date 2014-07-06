@@ -13,7 +13,7 @@ public class FireBehavior : MonoBehaviour {
 		shapebehavior.alto = alto;
 		shapebehavior.ancho = ancho;
 		shapebehavior.figure = createDebugFigure (alto,ancho); 
-		shapebehavior.bloqueName = "SmallBlockSprite";
+		shapebehavior.bloqueName = "BlockSprite";
 
 	}
 	// Update is called once per frame
