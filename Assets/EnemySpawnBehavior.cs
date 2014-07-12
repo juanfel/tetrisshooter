@@ -14,7 +14,7 @@ public class EnemySpawnBehavior : MonoBehaviour {
 	private float block_size;
 	private float snapval = 1f; //Para que aproxime a una posicion en intervalos de 1.5 (1.46->1.5)
 	private float invsnap;
-	FigureTemplate figure;
+	FigureTemplate[] figures;
 	bool spawnReady = false;
 	// Use this for initialization
 	void prepareSpawn()
@@ -27,10 +27,10 @@ public class EnemySpawnBehavior : MonoBehaviour {
 		shapebehavior = (ShapeBehavior)Instantiate (original);
 		shapebehavior.alto = alto;
 		shapebehavior.ancho = ancho;
-		shapebehavior.figure = createDebugFigure (alto,ancho); 
 		shapebehavior.bloqueName = "EnemyBlock";
 		invsnap = 1 / snapval;
 		camera_height = transform.parent.camera.orthographicSize;
+		figures = createDebugFigures ();
 	}
 	// Update is called once per frame
 	void Update () {
@@ -39,6 +39,7 @@ public class EnemySpawnBehavior : MonoBehaviour {
 		{
 			//Calcula la nueva posicion en base de la posicion del objeto, asegurandose que la 
 			//posicion nueva este dentro de la camara
+			shapebehavior.figure = figures[Random.Range (0,3)];
 			if(shapebehavior.bloque != null)
 			{
 				Debug.LogError ("bloque no null");
@@ -52,17 +53,46 @@ public class EnemySpawnBehavior : MonoBehaviour {
 			spawnReady = false;
 		}
 	}
-	
+	bool[,] figure;
 	//Crea una figura para propositos de testing y la asigna al shapebehavior
-	FigureTemplate createDebugFigure(int alto, int ancho)
+	FigureTemplate createDebugFigure(int alto, int ancho,int tipo)
 	{
 		
-		bool[,] figure = new bool[,]{
-			{true,true,false,true},
-			{true,true,true,true}
-		};
+		if(tipo == 1)
+		{
+			figure = new bool[,]{
+				{true,true,false,true},
+				{true,true,true,true}
+			};
+			
+		}
+		if(tipo == 2)
+		{
+			figure = new bool[,]{
+				{false,true,false,false},
+				{true,true,true,true}
+			};
+			
+		}
+		if(tipo == 3)
+		{
+			figure = new bool[,]{
+				{true,true,true,true},
+				{true,false,false,true}
+			};
+			
+		}
+		
 		FigureTemplate figtemp = new FigureTemplate(figure,2,4);
 		return figtemp;
-		
+	}
+	FigureTemplate[] createDebugFigures()
+	{
+		FigureTemplate[] figures = new FigureTemplate[3];
+		for (int i = 0; i <= 2; i++) 
+		{
+			figures[i] = createDebugFigure (2,4,i+1);
+		}
+		return figures;
 	}
 }
