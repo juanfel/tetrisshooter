@@ -12,7 +12,12 @@ public class ShapeBehavior : MonoBehaviour {
 
 	public float x0;
 	public float y0;
-	
+
+	void Awake()
+	{
+		Debug.Log ("Loading block");
+		bloque = (GameObject)Resources.Load (bloqueName);
+	}
 	// Reemplaza los valores donde deben ir los bloques por los bloques mismos
 	// Ademas los instancia en el mundo. Parte desde el extremo (0,0). O sea, va rellenando
 	// al reve
@@ -20,6 +25,7 @@ public class ShapeBehavior : MonoBehaviour {
 		float x = x0;
 		float y = y0;
 		bloque = (GameObject)Resources.Load (bloqueName);
+		Debug.Log (bloque);
 		for (int i = 0; i < figure.size_x; i++) {
 			for (int j = 0; j < figure.size_y; j++) {
 				if(figure.figure[i,j] == true)

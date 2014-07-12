@@ -7,6 +7,11 @@ public class EnemySpawnBehavior : MonoBehaviour {
 	private ShapeBehavior shapebehavior; 
 	private int alto = 2;
 	private int ancho = 4;
+	private int x0; //Posicion de la camara
+	private int y0;
+	private float camera_height; //alto y ancho de la camara
+	private int camera_width;
+	private float block_size;
 	private float snapval = 1f; //Para que aproxime a una posicion en intervalos de 1.5 (1.46->1.5)
 	private float invsnap;
 	FigureTemplate figure;
@@ -25,13 +30,24 @@ public class EnemySpawnBehavior : MonoBehaviour {
 		shapebehavior.figure = createDebugFigure (alto,ancho); 
 		shapebehavior.bloqueName = "EnemyBlock";
 		invsnap = 1 / snapval;
+		camera_height = transform.parent.camera.orthographicSize;
 	}
 	// Update is called once per frame
 	void Update () {
+
 		if (spawnReady) 
 		{
+			//Calcula la nueva posicion en base de la posicion del objeto, asegurandose que la 
+			//posicion nueva este dentro de la camara
+			if(shapebehavior.bloque != null)
+			{
+				Debug.LogError ("bloque no null");
+				block_size = shapebehavior.bloque.renderer.bounds.size.y;
+			}
+
+			float new_y = transform.position.y + Random.Range(-camera_height+ancho*block_size,camera_height ); //Posicion parte desde el centro
 			shapebehavior.x0 = Mathf.Round (transform.position.x*invsnap)/invsnap;
-			shapebehavior.y0 = Mathf.Round (transform.position.y*invsnap)/invsnap;
+			shapebehavior.y0 = Mathf.Round (new_y*invsnap)/invsnap;  
 			shapebehavior.InstantiateShape();
 			spawnReady = false;
 		}
