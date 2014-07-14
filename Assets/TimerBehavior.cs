@@ -7,7 +7,7 @@ public class TimerBehavior : MonoBehaviour {
 	
 	void Start()
 	{
-		InvokeRepeating("decreaseTimeRemaining", 1.0f, 1.0f);
+		InvokeRepeating("decreaseTimeRemaining", 1.0f, 0.5f);
 	}
 	
 	void Update()
