@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class RectilinealEnemyMovement : MonoBehaviour {
-	float speed = 0.2f;
+	float speed = 0.3f;
 	// Use this for initialization
 	void Start () {
 	
