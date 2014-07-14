@@ -3,9 +3,12 @@ using System.Collections;
 
 public class LivesBehavior : MonoBehaviour {
 	int lives = 5;
+	public GameObject livesObject;
+	GUIText livesText;
 	// Use this for initialization
 	void Start () {
-	
+		livesText = livesObject.GetComponent<GUIText> ();
+		livesText.text = "lives: " + lives;
 	}
 	
 	// Update is called once per frame
@@ -20,6 +23,6 @@ public class LivesBehavior : MonoBehaviour {
 		{
 			lives = 0;
 		}
-		Debug.Log ("Lives:" + lives);
+		livesText.text = "Lives:" + lives;
 	}
 }
